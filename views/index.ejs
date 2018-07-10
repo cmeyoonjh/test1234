@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <script src='/view/jquery-3.3.1.min.js'></script>
+  </head>
+  <body>
+    <h1>Welcome to WMU Token!! </h1>
+    <h2>총  토큰 : <%=totaltoken2%></h2>
+    <h2> 
+	<%if(halt = 'false') { %>
+	<span> ICO 종료! </span>
+	<% } else { %>
+	<span> ICO 진행중!</span>	
+	<% } %>
+	<br />
+	현재 시즌 : 	<%=nowsession%>
+    </h2>
+
+    <h2 style="color:blue;">토큰 조회</h2>
+    지갑주소 : <input type="text" id="token_address" style="width:350px;" />
+    <input type="button" id="ajax_balance" value="조회" />
+    <div id="resulttoken"></div>
+
+
+<!--    <h2 style="color:blue;">총 토큰량</h2> 
+    <input type="button" id="ajax_total" value="조회" />
+    <div id="totaltoken"></div> -->
+
+
+    <h2 style="color:blue;">시즌 별 토큰재고</h2>
+    시즌을 입력하시오(0~4) : <input type="text" id="sessiondata" value="" />
+    <input type="button" id="ajax_session" value="조회" />
+    <div id="session"></div>
+
+    <script>
+
+  $('#ajax_balance').click( function() {
+	console.log('123');
+          $('#result').html('');
+          $.ajax({
+              url: '/balanceOf',
+              dataType: 'json',
+              type: 'POST',
+              data: {'token_address':$('#token_address').val()},
+              success: function(result) {
+                  if ( result['result'] == true ) {
+                      $('#resulttoken').html("토큰양 : " + result['TokenBalance']);
+                  }
+              }
+          });
+      })
+
+$('#ajax_total').click( function() {
+	console.log('456');
+	 $('#totaltoken').html('');
+          $.ajax({
+              url: '/totalSupply',
+              dataType: 'json',
+              type: 'POST',
+ 	      //data: {'token_address':$('#token_address').val()},
+              success: function(result) {
+                  if ( result['result'] == true ) {
+                      $('#totaltoken').html("토큰양 : " + result['totaltokenval']);
+                  }
+              }
+          });
+
+})
+
+$('#ajax_session').click( function() {
+        console.log('7');
+         $('#session').html('');
+          $.ajax({
+              url: '/session',
+              dataType: 'json',
+              type: 'POST',
+              data: {'sessiondata':$('#sessiondata').val()},
+              success: function(result) {
+                  if ( result['result'] == true ) {
+                      $('#session').html($('#sessiondata').val()+"시즌 : " + result['sessionval']);
+                  }
+              }
+          });
+
+})
+
+
+
+    </script>
+  </body>
+</html>
+

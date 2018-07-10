@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YuEun Token - BETA</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="./app.js"></script>
+</head>
+<body>
+  <h1>YuEun Token</h1>
+  <h2> - BETA (06221000)</h2>&nbsp;<a class="point" id="openCheck" onclick="App.haltChange()"></a>
+  <button id="ownerChange" onclick="App.changeOwner()">Owner Change</button>
+  <h3>총 발행량 : <span class="black"><span id="totalSupply_"></span> YU</span></h3>
+  <h3>수익 이더 : <span class="black"><span id="etherWallet"></span> ether</span></h3>
+  <h3>토큰 재고 : <span class="black"><span id="ownerWallet"></span> YU</span></h3>
+  <br>
+
+  <h1>정산</h1>
+  <br><label for="amount">Amount:</label><input type="text" id="amount" placeholder="1"></input>
+  <!--<br><label for="receiver">To Address:</label><input type="text" id="receiver" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>-->
+  <br><br><button id="send" onclick="App.sendCoin()">Send MetaCoin</button>
+  <br><br>
+  <span id="status"></span>
+  <br>
+  <span class="hint"><strong>owner Address:</strong> <span id="ownerAddress"></span></span>
+</body>
+</html>
